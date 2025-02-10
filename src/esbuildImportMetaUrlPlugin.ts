@@ -7,7 +7,7 @@ export default <Plugin>{
   name: 'import.meta.url',
   setup ({ onLoad }) {
     // Help vite that bundles/move files in dev mode without touching `import.meta.url` which breaks asset urls
-    onLoad({ filter: /.*\.js/, namespace: 'file' }, async args => {
+    onLoad({ filter: /.*\.js$/, namespace: 'file' }, async args => {
       const code = fs.readFileSync(args.path, 'utf8')
 
       const assetImportMetaUrlRE = /\bnew\s+URL\s*\(\s*('[^']+'|"[^"]+"|`[^`]+`)\s*,\s*import\.meta\.url\s*(?:,\s*)?\)/g
